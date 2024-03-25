@@ -1,0 +1,7 @@
+Commit 1 25/03/2024
+    * Empece el proyecto (Subí el archivo htmly el Js).
+    * La pagina no tiene estilos (css).
+
+Commit 2 25/23/2024
+    * Agrege estilos a la pagina (Agrege el archivo css).
+    * Agrege las funciones correspodiente para cada boton pero no esta su funcion. Solo indique que cual es la funcion correspondiente para cada boton.
