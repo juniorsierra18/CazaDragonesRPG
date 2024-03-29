@@ -11,3 +11,7 @@ Commit 3 27/03/2024
 
 Commit 4 28/03/2024
     * Termine el proyecto.
+
+Commit 5 29/03/2024
+    * Cambie un poco la interfaz
+    * Traducí la pagina a español

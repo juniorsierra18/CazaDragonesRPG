@@ -1,11 +1,30 @@
 body {
   background-color: #0a0a23;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+.title{
+  color: #c70d0d;
+  text-align: center;
 }
 
 #text {
   background-color: #0a0a23;
   color: #ffffff;
   padding: 10px;
+}
+
+#health {
+  color: #0015ff;
+}
+
+#gold {
+  color:#daa520
 }
 
 #game {
@@ -15,6 +34,7 @@ body {
   color: #ffffff;
   margin: 30px auto 0px;
   padding: 10px;
+  border-radius: 10px;
 }
 
 #controls,
@@ -39,7 +59,7 @@ body {
 button {
   cursor: pointer;
   color: #0a0a23;
-  background-color: #feac32;
-  background-image: linear-gradient(#fecc4c, #ffac33);
-  border: 3px solid #feac32;
+  background-color: #b032fe;
+  background-image: linear-gradient(#dba1fe, #b032fe);
+  border: 3px solid #b032fe;
 }
