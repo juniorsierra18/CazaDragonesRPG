@@ -6,6 +6,7 @@ let fighting;
 let monsterHealth;
 let inventory = ["Palo"];
 
+const place = document.getElementById('place');
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
@@ -16,6 +17,8 @@ const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
+const player = document.getElementById('player');
+const enemy = document.getElementById('enemy');
 const weapons = [
   { name: 'Palo', power: 5 },
   { name: 'Daga', power: 30 },
@@ -90,6 +93,44 @@ const locations = [
   }
 ];
 
+//Los dos atacan
+function twoAttack() {
+  player.style.left = '30%';
+  player.style.bottom = '30%';
+  enemy.style.right = '30%';
+  enemy.style.top = '30%';
+
+  setTimeout(() => {
+    player.style.left = '0';
+    player.style.bottom = '0';
+    enemy.style.right = '0';
+    enemy.style.top = '0';
+
+  }, 1000);
+}
+
+//Solo el enemigo ataca
+function enemyAttack() {
+  enemy.style.right = '40%';
+  enemy.style.top = '40%';
+
+  setTimeout(() => {
+    enemy.style.right = '0';
+    enemy.style.top = '0';
+  }, 1000);
+}
+
+//solo el jugador ataca
+function playerAttack() {
+  player.style.left = '40%';
+  player.style.bottom = '40%';
+
+  setTimeout(() => {
+    player.style.left = '0';
+    player.style.bottom = '0';
+  }, 1000);
+}
+
 // initialize buttons
 button1.onclick = goStore;
 button2.onclick = goCave;
@@ -107,15 +148,24 @@ function update(location) {
 }
 
 function goTown() {
+  place.style.background = "url('img/lugar/pueblo.jpg')";
   update(locations[0]);
+  place.style.display = "block";
+  document.querySelector(".gameContainer").style.display = "none";
 }
 
 function goStore() {
+  place.style.background = "url('img/lugar/Tiendas-D1.jpg')";
   update(locations[1]);
+  place.style.display = "block";
+  document.querySelector(".gameContainer").style.display = "none";
 }
 
 function goCave() {
+  place.style.background = "url('img/lugar/campo(1).jpg')";
   update(locations[2]);
+  place.style.display = "block";
+  document.querySelector(".gameContainer").style.display = "none";
 }
 
 function buyHealth() {
@@ -182,6 +232,8 @@ function goFight() {
   monsterStats.style.display = "block";
   monsterName.innerText = monsters[fighting].name;
   monsterHealthText.innerText = monsterHealth;
+  place.style.display = "none";
+  document.querySelector(".gameContainer").style.display = "block";
 }
 
 function attack() {
@@ -189,8 +241,10 @@ function attack() {
   text.innerText += " Lo atacas con tu " + weapons[currentWeapon].name + ".";
   health -= getMonsterAttackValue(monsters[fighting].level);
   if (isMonsterHit()) {
-    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;    
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1; 
+    twoAttack();
   } else {
+    playerAttack();
     text.innerText += "Lo evitó";
   }
   healthText.innerText = health;
@@ -221,6 +275,7 @@ function isMonsterHit() {
 }
 
 function dodge() {
+  enemyAttack();
   text.innerText = "Esquivas el ataque del " + monsters[fighting].name;
 }
 
@@ -235,10 +290,14 @@ function defeatMonster() {
 function lose() {
   text.style.background = "#c70d0d";
   update(locations[5]);
+  place.style.display = "block";
+  document.querySelector(".gameContainer").style.display = "none";
 }
 
 function winGame() {
   update(locations[6]);
+  place.style.display = "block";
+  document.querySelector(".gameContainer").style.display = "none";
 }
 
 function restart() {
@@ -252,10 +311,13 @@ function restart() {
   xpText.innerText = xp;
   text.style.background = "#0a0a23";
   goTown();
+  place.style.display = "block";
+  document.querySelector(".gameContainer").style.display = "none";
 }
 
 function easterEgg() {
   update(locations[7]);
+  document.querySelector(".gameContainer").style.display = "none";
 }
 
 function pickTwo() {

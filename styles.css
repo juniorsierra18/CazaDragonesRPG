@@ -5,12 +5,79 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  max-height: 100vh;
   font-family: Arial, sans-serif;
 }
 .title{
   color: #c70d0d;
   text-align: center;
+}
+
+#place {
+  position: relative;
+  max-width: 700px;
+  height: 350px;
+  border: 2px solid #333;
+  border-radius: 20px 20px 0 0;
+  background-image: url(img/lugar/pueblo.jpg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.gameContainer {
+  display: none;
+  position: relative;
+  max-width: 700px;
+  height: 350px;
+  border: 2px solid #333;
+  border-radius: 20px 20px 0 0;
+  background-image: url(img/lugar/campo\(1\).jpg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.player {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background-color: transparent;
+  background-image: url('./img/personajes/player.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.5s ease;
+}
+
+.enemy {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-color: transparent;
+  background-image: url('./img/personajes/enemy.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.5s ease;
+}
+
+.player {
+  bottom: 0;
+  left: 0;
+}
+
+.enemy {
+  top: 0;
+  right: 0;
+}
+
+#attack-btn {
+  left: calc(50% - 150px);
+}
+
+#dodge-btn {
+  left: calc(50% - 50px);
+}
+
+#attack-dodge-btn {
+  left: calc(50% + 50px);
 }
 
 #text {
@@ -28,8 +95,8 @@ body {
 }
 
 #game {
-  max-width: 500px;
-  max-height: 400px;
+  width: 700px;
+  height: 600px;
   background-color: #ffffff;
   color: #ffffff;
   margin: 30px auto 0px;
