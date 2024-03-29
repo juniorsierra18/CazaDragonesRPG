@@ -8,3 +8,6 @@ Commit 2 25/03/2024
 
 Commit 3 27/03/2024
     * Agregue la funcion de comprar Salud y Armas(Siempre que compras un arma te muestra las armas anteriores y el armarma nueva).
+
+Commit 4 28/03/2024
+    * Termine el proyecto.
