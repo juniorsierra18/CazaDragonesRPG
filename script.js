@@ -1,3 +1,4 @@
+let lives = 3;
 let xp = 0;
 let health = 100;
 let gold = 50;
@@ -11,6 +12,7 @@ const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
 const text = document.querySelector("#text");
+const livesText = document.querySelector("#livesText");
 const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
@@ -32,7 +34,7 @@ const monsters = [
     health: 15
   },
   {
-    name: "Fanged Beast",
+    name: "Bestia",
     level: 8,
     health: 60
   },
@@ -78,6 +80,12 @@ const locations = [
     "button text": ["¿REPETIR?", "¿REPETIR?", "¿REPETIR?"],
     "button functions": [restart, restart, restart],
     text: "Te has MUERTO. &#x2620;"
+  },
+  {
+    name: "menosVida",
+    "button text": ["¿Luchar VS Slime?", "¿Luchar VS Bestia?", "Ir a la plaza del pueblo"],
+    "button functions": [fightSlime, fightBeast, goTown],
+    text: "Te has MUERTO. &#x2620; Perdiste una vida, si pierdes todas perderas todo el proceso. Restamos el 15% de tu XP y el 25% de tu ORO"
   },
   { 
     name: "Victoria", 
@@ -150,6 +158,7 @@ function update(location) {
 function goTown() {
   place.style.background = "url('img/lugar/pueblo.jpg')";
   update(locations[0]);
+  text.style.background = "#0a0a23";
   place.style.display = "block";
   document.querySelector(".gameContainer").style.display = "none";
 }
@@ -212,16 +221,22 @@ function sellWeapon() {
 }
 
 function fightSlime() {
+  enemy.style.backgroundImage = "url('img/personajes/slime.gif')";
+  text.style.background = "#0a0a23";
   fighting = 0;
   goFight();
 }
 
 function fightBeast() {
+  enemy.style.backgroundImage = "url('img/personajes/enemy.png')";
+  text.style.background = "#0a0a23";
   fighting = 1;
   goFight();
 }
 
 function fightDragon() {
+  enemy.style.backgroundImage = "url('img/personajes/dragon.png')";
+  text.style.background = "#0a0a23";
   fighting = 2;
   goFight();
 }
@@ -250,7 +265,7 @@ function attack() {
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
   if (health <= 0) {
-    lose();
+    lessLife();
   } else if (monsterHealth <= 0) {
     if (fighting === 2) {
       winGame();
@@ -290,22 +305,39 @@ function defeatMonster() {
 function lose() {
   text.style.background = "#c70d0d";
   update(locations[5]);
-  place.style.display = "block";
-  document.querySelector(".gameContainer").style.display = "none";
 }
 
 function winGame() {
-  update(locations[6]);
+  update(locations[7]);
   place.style.display = "block";
   document.querySelector(".gameContainer").style.display = "none";
 }
 
+function lessLife() {
+  lives --;
+  xp = xp - Math.floor(xp * 0.15); 
+  health = 75;
+  gold = gold - Math.floor(gold * 0.25);
+  text.style.background = "#c70d0d";
+  livesText.innerText = lives;
+  xpText.innerText = xp;
+  healthText.innerText = health;
+  goldText.innerText = gold;
+  if (lives > 0) {
+    update(locations[6]);
+  } else {
+    lose();
+  } 
+}
+
 function restart() {
+  lives = 3;
   xp = 0;
   health = 100;
   gold = 50;
   currentWeapon = 0;
   inventory = ["Palo"];
+  livesText.innerText = lives;
   goldText.innerText = gold;
   healthText.innerText = health;
   xpText.innerText = xp;
@@ -316,7 +348,7 @@ function restart() {
 }
 
 function easterEgg() {
-  update(locations[7]);
+  update(locations[8]);
   document.querySelector(".gameContainer").style.display = "none";
 }
 

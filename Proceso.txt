@@ -18,3 +18,8 @@ Commit 5 29/03/2024
 
 Commit 6 29/03/2024
     * Agrege una interfaz para visualizar el juego (los fondos y los personajes solo son de prueba)
+
+Commit 7 31/03/2024
+    * Agregue los personajes correspondientes.
+    * Agregue sistemas de vidas.
+    
